@@ -9,38 +9,40 @@ import { Box } from '@mui/system';
 function Register() {
 
     return (
-        <Box
-            sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '100vh',
-            }}
-        >
-            <Typography variant="h4" gutterBottom>
-                Register
-            </Typography>
-            <TextField
-                label="Username"
-                variant="outlined"
-                margin="normal"
-            />
-            <TextField
-                label="Email"
-                variant="outlined"
-                margin="normal"
-            />
-            <TextField
-                label="Password"
-                variant="outlined"
-                margin="normal"
-                type="password"
-            />
-            <Button variant="contained">
-                Register
-            </Button>
-        </Box>
+        <div className="register">
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    height: '100vh',
+                }}
+            >
+                <Typography variant="h4" gutterBottom>
+                    Register
+                </Typography>
+                <TextField
+                    label="Username"
+                    variant="outlined"
+                    margin="normal"
+                />
+                <TextField
+                    label="Email"
+                    variant="outlined"
+                    margin="normal"
+                />
+                <TextField
+                    label="Password"
+                    variant="outlined"
+                    margin="normal"
+                    type="password"
+                />
+                <Button variant="contained">
+                    Register
+                </Button>
+            </Box>
+        </div>
     );
 }
 
