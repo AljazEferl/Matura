@@ -12,16 +12,13 @@ function Home() {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                justifyContent: 'center',
                 height: '100vh',
             }}
         >
             <Typography variant="h4" gutterBottom>
-                Home
+                Home content
             </Typography>
-            <Button variant="contained" color='inherit'>
-                Home
-            </Button>
+
         </Box>
     );
 }

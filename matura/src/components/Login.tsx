@@ -4,7 +4,7 @@ import React from 'react';
 import { Button, TextField, Typography, Paper } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Box } from '@mui/system';
-
+import '../assets/styles/LoginStyles.css';
 
 function Login() {
 
@@ -26,7 +26,7 @@ function Login() {
                         alignItems: 'center',
                         justifyContent: 'center',
                         height: '50vh',
-                        width: '30vh',
+                        width: '50vh',
                         padding: '2rem',
                         borderRadius: '1rem',
                     }}
@@ -38,14 +38,20 @@ function Login() {
                         label="Username"
                         variant="outlined"
                         margin="normal"
+                        sx={{
+                            width: '100%',
+                        }}
                     />
                     <TextField
                         label="Password"
                         variant="outlined"
                         margin="normal"
                         type="password"
+                        sx={{
+                            width: '100%',
+                        }}
                     />
-                    <Button variant="contained">
+                    <Button variant="contained" color='inherit'>
                         Login
                     </Button>
                 </Paper>
