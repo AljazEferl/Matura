@@ -10,7 +10,7 @@ import Navigation from './components/Navigation';
 // Create dark theme
 const darkTheme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: 'light',
   },
 });
 

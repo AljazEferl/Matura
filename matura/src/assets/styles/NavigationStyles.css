@@ -1,20 +1,23 @@
 .navigation {
     position: fixed;
-    top: 0;
+    top: 1%;
     left: 50%;
     transform: translateX(-50%);
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
+    
 }
 
 .nav-paper {
     /*
     apply a gradient to the navigation bar
     */
+    padding: 5px !important;
     height: 5vh !important;
     width: 60vh !important;
-    background-color: rgba(0, 0, 0, 0.5) !important;
     backdrop-filter: blur(10px) !important;
     border-radius: 20px !important;
+    background: linear-gradient(90deg, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0.5) 50%, rgb(255, 255, 255) 100%) !important;
+
 }

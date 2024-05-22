@@ -1,28 +1,23 @@
 // Register component
 // use material-ui for styling
-import React, { useEffect } from 'react';
-import { Button, Paper, TextField, Typography } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import React, { useState } from 'react';
+import { Button, TextField, Typography, Paper, Card, IconButton, Checkbox, FormControl, FormControlLabel, Link } from '@mui/material';
 import { Box } from '@mui/system';
-// import css file
+import FacebookIcon from '@mui/icons-material/Facebook';
+import GoogleIcon from '@mui/icons-material/Google';
+import TwitterIcon from '@mui/icons-material/Twitter';
 import '../assets/styles/RegisterStyles.css';
 
 
 function Register() {
-    const [username, setUsername] = React.useState('');
-    const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState('');
-    const [errorPassword, setErrorPassword] = React.useState(false);
-    useEffect(() => {
-        if (password.length < 8) {
-            setErrorPassword(true);
-        } else {
-            setErrorPassword(false);
-        }
-    }, [username, email, password]);
+    const [checked, setChecked] = useState(true);
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setChecked(event.target.checked);
+    };
 
     return (
-        <div className="register">
+        <div className="register" style={{ display: 'flex', justifyContent: 'center' }}>
             <Box
                 sx={{
                     display: 'flex',
@@ -33,7 +28,9 @@ function Register() {
                 }}
             >
                 <Paper
+                    className='paper-register'
                     sx={{
+                        position: 'relative',
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
@@ -44,55 +41,141 @@ function Register() {
                         borderRadius: '1rem',
                     }}
                 >
-                    <Typography variant="h4" gutterBottom>
-                        Register
-                    </Typography>
-                    <TextField
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        type='text'
-                        label="Username"
-                        variant="outlined"
-                        margin="normal"
+                    <Card
                         sx={{
-                            width: '100%',
+                            fontWeight: 'bold',
+                            position: 'absolute',
+                            top: '-3rem',
+                            height: '10rem',
+                            padding: '1rem',
+                            marginBottom: '1rem',
+                            borderRadius: '10px',
+                            background: 'linear-gradient(to bottom, #5ebdf3, #1d74e6);',
+                            width: '90%',
+                            color: '#FFF',
+                            display: 'flexbox',
+                            alignItems: 'center',
+                            justifyContent: 'center',
                         }}
-                    />
-                    <TextField
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        type="email"
-                        label="Email"
-                        variant="outlined"
-                        margin="normal"
-                        sx={{
-                            width: '100%',
-                        }}
-                    />
-                    <TextField
-                        onChange={(e) => setPassword(e.target.value)}
-                        value={password}
-                        type="password"
-                        label="Password"
-                        variant="outlined"
-                        margin="normal"
-                        error={errorPassword}
-                        sx={{
-                            width: '100%',
-                        }}
-                    />
-                    <Button color='inherit' variant="contained"
-                        sx={{
-                            marginTop: '1rem',
-                            width: '100%',
-                        }}
-                        disabled={errorPassword}
                     >
-                        Register
+                        <Typography sx={{
+                            fontWeight: 'bold',
+                            color: '#FFF',
+                        }} variant="h4" gutterBottom>
+                            Registracija
+                        </Typography>
+                        <div className='icons-container' style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            width: '100%',
+                            marginTop: '2rem',
+                        }}>
+                            <IconButton>
+                                <GoogleIcon sx={{
+                                    color: '#FFF',
+                                    fontSize: '18px',
+                                }} />
+                            </IconButton >
+                            <IconButton>
+                                <FacebookIcon sx={{
+                                    color: '#FFF',
+                                    fontSize: '18px',
+                                }} />
+                            </IconButton>
+                            <IconButton>
+                                <TwitterIcon sx={{
+                                    color: '#FFF',
+                                    fontSize: '18px',
+                                }} />
+                            </IconButton>
+
+                        </div>
+
+                    </Card>
+                    <TextField
+                        label="Uporabniško ime"
+                        variant="standard"
+                        margin="normal"
+
+                        sx={{
+                            marginTop: '10rem',
+                            width: '100%',
+                        }}
+                    />
+                    <TextField
+                        label="Email"
+                        variant="standard"
+                        margin="normal"
+                        type="email"
+                        sx={{
+                            width: '100%',
+                        }}
+                    />
+                    <TextField
+                        label="Geslo"
+                        variant="standard"
+                        margin="normal"
+                        type="password"
+                        sx={{
+                            width: '100%',
+                        }}
+                    />
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                checked={checked}
+                                onChange={handleChange}
+                                color="primary"
+                            />
+                        }
+                        label={
+                            <Typography variant="body2" color="textSecondary">
+                                Strinjam se z{' '}
+                            <Link href="#" variant="body2"
+                            >
+                                pogoji uporabe
+                            </Link>
+                            {' '}in{' '}
+                            <Link href="#" variant="body2">
+                                politiko zasebnosti
+                            </Link>
+                            </Typography>
+                             }
+                        sx={{
+                            width: '100%',
+                            alignItems: 'center', // Aligns the entire component to the left
+                            marginLeft: '0', // Adjust the margin as needed
+                            marginTop: '1rem', // Add top margin to separate from text fields
+                        }}
+                    />
+                    <Button
+                        variant="contained"
+                        color='inherit'
+                        sx={{
+                            height: '3rem',
+                            width: '100%',
+                            marginTop: '3rem',
+                            background: 'linear-gradient(to bottom, #5ebdf3, #1d74e6);',
+                            color: '#FFF',
+                            fontWeight: 'bold',
+                        }}
+                    >
+                        Registracija
                     </Button>
+                    <Typography variant="body2" color="textSecondary" sx={{
+                        marginTop: '2rem',
+                        
+                    }}>
+                        Že imate račun?{' '}
+                    <Link href="/login" variant="body2">
+                        Prijava
+                    </Link>
+                    </Typography>
+
                 </Paper>
             </Box>
-        </div >
+        </div>
     );
 }
 
