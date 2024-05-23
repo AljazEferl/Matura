@@ -13,9 +13,8 @@
     /*
     apply a gradient to the navigation bar
     */
-    padding: 5px !important;
     height: 5vh !important;
-    width: 60vh !important;
+    width: 100vh !important;
     backdrop-filter: blur(10px) !important;
     border-radius: 20px !important;
     background: linear-gradient(90deg, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0.5) 50%, rgb(255, 255, 255) 100%) !important;

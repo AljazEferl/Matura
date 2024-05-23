@@ -1,0 +1,7 @@
+https://www.npmjs.com/package/@react-oauth/google
+
+https://www.npmjs.com/package/reactjs-social-login
+
+https://www.npmjs.com/package/react-facebook-auth
+
+https://www.npmjs.com/package/react-twitter-auth

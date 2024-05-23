@@ -1,12 +1,12 @@
 // Register component
 // use material-ui for styling
 import React, { useState } from 'react';
-import { Button, TextField, Typography, Paper, Card, IconButton, Checkbox, FormControl, FormControlLabel, Link } from '@mui/material';
+import { Button, TextField, Typography, Paper, Card, IconButton, Checkbox, FormControl, FormControlLabel, Link, useTheme } from '@mui/material';
 import { Box } from '@mui/system';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GoogleIcon from '@mui/icons-material/Google';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import '../assets/styles/RegisterStyles.css';
+import '../assets/styles/LoginStyles.css';
 
 
 function Register() {
@@ -16,8 +16,10 @@ function Register() {
         setChecked(event.target.checked);
     };
 
+    const theme = useTheme();
+
     return (
-        <div className="register" style={{ display: 'flex', justifyContent: 'center' }}>
+        <div className="login" style={{ display: 'flex', justifyContent: 'center' }}>
             <Box
                 sx={{
                     display: 'flex',
@@ -26,10 +28,11 @@ function Register() {
                     justifyContent: 'center',
                     height: '100vh',
                 }}
-            >
-                <Paper
-                    className='paper-register'
+            > 
+                <Paper 
+                    className='paper-login'
                     sx={{
+                        backgroundColor: theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.7)' : 'rgba(255, 255, 255, 0.7)',
                         position: 'relative',
                         display: 'flex',
                         flexDirection: 'column',
@@ -43,6 +46,7 @@ function Register() {
                 >
                     <Card
                         sx={{
+                            backgroundColor: theme.palette.mode === 'dark' ? 'rgba(70, 71, 89, 0.9)' : 'rgba(255, 255, 255, 0.9)',
                             fontWeight: 'bold',
                             position: 'absolute',
                             top: '-3rem',
@@ -50,9 +54,7 @@ function Register() {
                             padding: '1rem',
                             marginBottom: '1rem',
                             borderRadius: '10px',
-                            background: 'linear-gradient(to bottom, #5ebdf3, #1d74e6);',
                             width: '90%',
-                            color: '#FFF',
                             display: 'flexbox',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -60,9 +62,8 @@ function Register() {
                     >
                         <Typography sx={{
                             fontWeight: 'bold',
-                            color: '#FFF',
                         }} variant="h4" gutterBottom>
-                            Registracija
+                            Login
                         </Typography>
                         <div className='icons-container' style={{
                             display: 'flex',
@@ -73,19 +74,16 @@ function Register() {
                         }}>
                             <IconButton>
                                 <GoogleIcon sx={{
-                                    color: '#FFF',
                                     fontSize: '18px',
                                 }} />
                             </IconButton >
                             <IconButton>
                                 <FacebookIcon sx={{
-                                    color: '#FFF',
                                     fontSize: '18px',
                                 }} />
                             </IconButton>
                             <IconButton>
                                 <TwitterIcon sx={{
-                                    color: '#FFF',
                                     fontSize: '18px',
                                 }} />
                             </IconButton>
@@ -94,21 +92,12 @@ function Register() {
 
                     </Card>
                     <TextField
-                        label="Uporabniško ime"
+                        label="Uporabniško ime ali email"
                         variant="standard"
                         margin="normal"
 
                         sx={{
                             marginTop: '10rem',
-                            width: '100%',
-                        }}
-                    />
-                    <TextField
-                        label="Email"
-                        variant="standard"
-                        margin="normal"
-                        type="email"
-                        sx={{
                             width: '100%',
                         }}
                     />
@@ -126,22 +115,15 @@ function Register() {
                             <Checkbox
                                 checked={checked}
                                 onChange={handleChange}
-                                color="primary"
+                                inputProps={{ 'aria-label': 'primary checkbox' }}
+                                color='default'
                             />
                         }
                         label={
                             <Typography variant="body2" color="textSecondary">
-                                Strinjam se z{' '}
-                            <Link href="#" variant="body2"
-                            >
-                                pogoji uporabe
-                            </Link>
-                            {' '}in{' '}
-                            <Link href="#" variant="body2">
-                                politiko zasebnosti
-                            </Link>
+                            Zapomni si me
                             </Typography>
-                             }
+                            }
                         sx={{
                             width: '100%',
                             alignItems: 'center', // Aligns the entire component to the left
@@ -152,27 +134,16 @@ function Register() {
                     <Button
                         variant="contained"
                         color='inherit'
+                        className='login-button'
                         sx={{
-                            height: '3rem',
+                            height: '2rem',
                             width: '100%',
-                            marginTop: '3rem',
-                            background: 'linear-gradient(to bottom, #5ebdf3, #1d74e6);',
-                            color: '#FFF',
+                            marginTop: '10rem',
                             fontWeight: 'bold',
                         }}
                     >
-                        Registracija
-                    </Button>
-                    <Typography variant="body2" color="textSecondary" sx={{
-                        marginTop: '2rem',
-                        
-                    }}>
-                        Že imate račun?{' '}
-                    <Link href="/login" variant="body2">
                         Prijava
-                    </Link>
-                    </Typography>
-
+                    </Button>
                 </Paper>
             </Box>
         </div>
