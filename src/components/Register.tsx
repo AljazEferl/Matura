@@ -20,6 +20,49 @@ function Register() {
     };
     const theme = useTheme();
 
+    // password validation
+    const validatePassword = (password: string) => {
+        // validate password length and must contain uppercase, lowercase, number and special character
+        const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/;
+        return passwordRegex.test(password);
+    }
+
+    // email validation
+    const validateEmail = (email: string) => {
+        // validate email format
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        return emailRegex.test(email);
+    }
+
+    // username validation
+    const validateUsername = (username: string) => {
+                // validate username length
+        return username.length >= 3;
+    }
+
+    // create a new user post call
+    const registerUser = () => {
+        // create a new user
+        fetch('http://localhost:3001/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: username,
+                email: email,
+                password: password,
+            }),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+
     return (
         <div className="register" style={{ display: 'flex', justifyContent: 'center' }}>
             <Box
@@ -64,6 +107,7 @@ function Register() {
                     >
                         <Typography sx={{
                             fontWeight: 'bold',
+                            transform: 'translateX(-0.5rem)',
                         }} variant="h4" gutterBottom>
                             Registracija
                         </Typography>
@@ -74,19 +118,32 @@ function Register() {
                             width: '100%',
                             marginTop: '2rem',
                         }}>
-                            <IconButton>
+                            <IconButton 
+                            sx={{
+                                marginRight: '1rem',
+                            
+                            }}
+                            >
                                 <GoogleIcon sx={{
-                                    fontSize: '18px',
+                                    fontSize: '24px',
                                 }} />
                             </IconButton >
-                            <IconButton>
+                            <IconButton
+                            sx={{
+                                marginRight: '1rem',
+                            
+                            }}>
                                 <FacebookIcon sx={{
-                                    fontSize: '18px',
+                                    fontSize: '24px',
                                 }} />
                             </IconButton>
-                            <IconButton>
+                            <IconButton
+                            sx={{
+                                marginRight: '1rem',
+                            
+                            }}>
                                 <TwitterIcon sx={{
-                                    fontSize: '18px',
+                                    fontSize: '24px',
                                 }} />
                             </IconButton>
 
@@ -97,7 +154,10 @@ function Register() {
                         label="Uporabniško ime"
                         variant="standard"
                         margin="normal"
-
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        error={!validateUsername(username) && username.length > 0}
+                        helperText={(!validateUsername(username) && username.length > 0) ? 'Uporabniško ime mora vsebovati vsaj 3 znake' : ''}
                         sx={{
                             marginTop: '10rem',
                             width: '100%',
@@ -107,6 +167,10 @@ function Register() {
                         label="Email"
                         variant="standard"
                         margin="normal"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        error={!validateEmail(email) && email.length > 0}
+                        helperText={(!validateEmail(email) && email.length > 0) ? 'Vnesite veljaven email naslov' : ''}
                         type="email"
                         sx={{
                             width: '100%',
@@ -116,6 +180,10 @@ function Register() {
                         label="Geslo"
                         variant="standard"
                         margin="normal"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        error={!validatePassword(password) && password.length > 0}
+                        helperText={(!validatePassword(password) && password.length > 0) ? 'Geslo mora vsebovati vsaj 8 znakov, eno veliko črko, eno malo črko, eno številko in en poseben znak' : ''}
                         type="password"
                         sx={{
                             width: '100%',
@@ -125,6 +193,10 @@ function Register() {
                         label="Potrdi geslo"
                         variant="standard"
                         margin="normal"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        error={password !== confirmPassword && confirmPassword.length > 0}
+                        helperText={(password !== confirmPassword && confirmPassword.length > 0) ? 'Gesli se ne ujemata' : ''}
                         type="password"
                         sx={{
                             width: '100%',
@@ -168,7 +240,7 @@ function Register() {
                             marginTop: '3rem',
                             fontWeight: 'bold',
                         }}
-                        disabled={!checked}
+                        disabled={!checked || !validateEmail(email) || !validatePassword(password) || !validateUsername(username) || password !== confirmPassword}
                     >
                         Registracija
                     </Button>

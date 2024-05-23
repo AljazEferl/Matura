@@ -1,8 +1,9 @@
 // Register component
 // use material-ui for styling
 import React, { useState } from 'react';
-import { Button, TextField, Typography, Paper, Card, IconButton, Checkbox, FormControl, FormControlLabel, Link, useTheme } from '@mui/material';
+import { Button, TextField, Typography, Paper, Card, IconButton, Checkbox, FormControl, FormControlLabel, useTheme } from '@mui/material';
 import { Box } from '@mui/system';
+import { Link } from 'react-router-dom';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GoogleIcon from '@mui/icons-material/Google';
 import TwitterIcon from '@mui/icons-material/Twitter';
@@ -32,7 +33,7 @@ function Register() {
                 <Paper 
                     className='paper-login'
                     sx={{
-                        backgroundColor: theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.7)' : 'rgba(255, 255, 255, 0.7)',
+                        backgroundColor: theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.8)' : 'rgba(255, 255, 255, 0.8)',
                         position: 'relative',
                         display: 'flex',
                         flexDirection: 'column',
@@ -62,6 +63,7 @@ function Register() {
                     >
                         <Typography sx={{
                             fontWeight: 'bold',
+                            transform: 'translateX(-0.5rem)',
                         }} variant="h4" gutterBottom>
                             Login
                         </Typography>
@@ -72,19 +74,31 @@ function Register() {
                             width: '100%',
                             marginTop: '2rem',
                         }}>
-                            <IconButton>
+                            <IconButton
+                            sx={{
+                                marginRight: '1rem',
+                            
+                            }}>
                                 <GoogleIcon sx={{
-                                    fontSize: '18px',
+                                    fontSize: '24px',
                                 }} />
                             </IconButton >
-                            <IconButton>
+                            <IconButton
+                            sx={{
+                                marginRight: '1rem',
+                            
+                            }}>
                                 <FacebookIcon sx={{
-                                    fontSize: '18px',
+                                    fontSize: '24px',
                                 }} />
                             </IconButton>
-                            <IconButton>
+                            <IconButton
+                            sx={{
+                                marginRight: '1rem',
+                            
+                            }}>
                                 <TwitterIcon sx={{
-                                    fontSize: '18px',
+                                    fontSize: '24px',
                                 }} />
                             </IconButton>
 
@@ -144,6 +158,22 @@ function Register() {
                     >
                         Prijava
                     </Button>
+                    <Typography variant="body2" color="textSecondary" sx={{
+                        marginTop: '1rem',
+                    }}>
+                        <Link to={"/"}>
+                            Pozabljeno geslo?
+                        </Link>
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" sx={{
+                        marginTop: '2rem',
+                        
+                    }}>
+                        Še nimate računa?{' '}
+                    <Link to="/register">
+                        Registracija
+                    </Link>
+                    </Typography>
                 </Paper>
             </Box>
         </div>

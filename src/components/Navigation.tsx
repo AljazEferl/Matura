@@ -1,7 +1,7 @@
 // navigation component
 // use material-ui for styling
 import React from 'react';
-import { Button, Typography, Paper, Switch, FormControlLabel } from '@mui/material';
+import { Button, Typography, Paper, Switch, FormControlLabel, useTheme } from '@mui/material';
 import { Box } from '@mui/system';
 import { Link } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
@@ -11,6 +11,9 @@ import LoginIcon from '@mui/icons-material/Login';
 import "../assets/styles/NavigationStyles.css";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
+    position: 'absolute',
+    top: 0,
+    right: 0,
     width: 62,
     height: 34,
     padding: 7,
@@ -63,37 +66,43 @@ interface NavigationProps {
 }
 
 function Navigation(props: NavigationProps) {
-
+    const theme = useTheme();
     return (
-        <div className="navigation">
-            <Paper className='nav-paper'>
+        <div className="navigation" style={{
+            background: theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(255, 255, 255, 0.5)',
+        }}>
+                        <Typography variant="h3" sx={{
+                    }}>
+                        Maturiral
+                    </Typography>
+            <div className='nav-paper'>
                 <Box
-                    sx={{
-                    }}
                 >
+                    <div className="nav-buttons">
                     <Link to="/">
-                        <Button color='inherit'>
+                        <Button>
                             <Home />
                         </Button>
                     </Link>
                     <Link to="/register">
-                        <Button color='inherit'>
+                        <Button >
                             <HowToRegIcon />
                         </Button>
                     </Link>
                     <Link to="/login">
-                        <Button color='inherit'>
+                        <Button >
                             <LoginIcon />
                         </Button>
                     </Link>
-                        <MaterialUISwitch sx={{ m: 1 }} checked={
+                    </div>
+                </Box>
+                <MaterialUISwitch checked={
                             props.darkMode
                         } onChange={(e) => props.setDarkMode(e.target.checked)} 
                         title='Dark mode switch'
+                        
                         />
-                    
-                </Box>
-            </Paper>
+            </div>
         </div>
     );
 }

@@ -4,10 +4,11 @@
 }
 
 .paper-login {
-    padding: 20px;
+    margin-top: 10vh;
+    padding: 15px !important;
     width: 60vh !important;
-    height: 70vh !important;
-    border-radius: 20px;
+    height: 80vh !important;
+    border-radius: 10px !important;
     backdrop-filter: blur(10px);
 }
 

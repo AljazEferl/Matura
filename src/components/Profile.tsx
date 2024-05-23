@@ -1,10 +1,10 @@
-// use muitheme for styling
+// profile component
+
 import React from 'react';
 import { Button, TextField, Typography, Paper, useTheme } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Box } from '@mui/system';
 
-function Home() {
+function Profile() {
     const theme = useTheme();
 
     return (
@@ -21,7 +21,7 @@ function Home() {
                 backgroundColor: theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.7)' : 'rgba(255, 255, 255, 0.7)',
              }}>
                 <Typography variant="h4" gutterBottom>
-                    Home content
+                    Profile content
                 </Typography>
             </Paper>
 
@@ -29,4 +29,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default Profile;
